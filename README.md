@@ -6,21 +6,57 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p> -->
 
-## Base de Datos
+### START PROJECT
 
-Añadi un contenedores con docker de Mysql y Adminer , adminer me permite gestiononar la bse datos de mysql con las respectivas credenciales 
-para ello se puede ejecutar en dado caso de tener docker un docker compose up --build y listo , seria crear la base de datos
+1.- docker compose up --build  (opcional)
+2.- php artisan migrate:fresh --seed
+3.- php artisan serv
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### Despues de crear el Proyecto 
+Use una imagen de MariaDB porque es un sistema de gestión de bases de datos relacionales (SGBDR) de código abierto, creado por los desarrolladores originales de MySQL, que ofrece una alternativa gratuita y robusta para almacenar, organizar y acceder a datos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
+Añadi Adminer que es una herramienta ligera y gratuita de gestión de bases de datos 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Con estas imagenes cree el contendor en Docker exponiendo los puertos 3306 correpondiente asi como el puerto 8081 , talmente configurable en el archivo 
+docker-compose.yml 
 
-## Laravel Sanctum
 
-php artisan install:api
+Despues de un analisis del recurso en cuestion de la prueba tecnica...
+realice la normalizacion esté quedando de la siguiente manera (mostrado en la carpeta public) :
+1FN Y 2FN:
+categoria {
+    id,
+    nombre
+}
+marca {
+    id
+    logo, 
+    nombre,
+    promo, 
+    imagen
+}
 
-## Laravel Sponsors
+3FN:
+ahora analizando la logica que se solicita la relacion  es de muchos a muchos , 
+(una Categoria puede tener muchas Marcas y una Marca puede tener muchas categorias)
+Para resolver esta relación, se creó la tabla intermedia:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+brand_categories {
+    brand_id,
+    category_id
+}
+
+YA TENIENDO CLARO LOS DATOS DE QUE HIRIAN EN LA BASE DATOS  (TABLAS Y ATRIBUTOS) me dispuse a crear los 
+recursos necesarios modelo , controlador y opcionalmente pero nesesario es (migracion , seeder y factory)
+esto para tener una informacion que consultar 
+
+siguendo el siguiente proceso
+(--migration --seed --controller --resource --factory --all)
+
+php artisan make:model Category -mscrf
+php artisan make:model Brand -mscrf
+php artisan make:model BrandCategory -m
+
+despues de añadir los campos en las migraciones , añadir factory y los seeders correpondientes  modifque el archivo DatabaseSeeder.php para isntaciar los seeder que previamnete se ceraron en orden ya solo queda ejecutar 
+
+php artisan migrate:fresh --seed

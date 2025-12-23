@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+    dbmaria:
+      image: mariadb:latest
+      container_name: mysql-mariadb
+      restart: unless-stopped
+      environment:
+        MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+        MARIADB_DATABASE: ${DB_DATABASE}
+        MARIADB_USER: ${DB_USERNAME}
+        MARIADB_PASSWORD: ${DB_PASSWORD}
+      ports:
+        - "3306:3306"
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8081:8080
