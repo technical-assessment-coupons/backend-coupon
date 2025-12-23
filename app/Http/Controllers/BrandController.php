@@ -12,7 +12,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $order = request()->get('order', 'asc');
+        return Brand::orderBy('nombre', $order)->paginate(10);
     }
 
     /**
