@@ -1,16 +1,21 @@
-<!-- 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p> -->
-
 ### START PROJECT
 
-1.- docker compose up --build  (opcional)
-2.- php artisan migrate:fresh --seed
-3.- php artisan serv
+1. Configurar **.env** development , ademas de las variables de la DB:
+```
+    SANCTUM_STATEFUL_DOMAINS=localhost:4200
+    SESSION_DOMAIN=localhost
+    SESSION_LIFETIME=5
+
+    DB_CONNECTION=mysql
+    DB_HOST=
+    DB_PORT=
+    DB_DATABASE=
+    DB_USERNAME=
+    DB_PASSWORD=
+```
+2. ```bash docker compose up --build``` (opcional)
+3. ```bash php artisan migrate:fresh --seed```
+4. ```bash php artisan serv```
 
 #### Despues de crear el Proyecto 
 Use una imagen de MariaDB porque es un sistema de gestión de bases de datos relacionales (SGBDR) de código abierto, creado por los desarrolladores originales de MySQL, que ofrece una alternativa gratuita y robusta para almacenar, organizar y acceder a datos.
