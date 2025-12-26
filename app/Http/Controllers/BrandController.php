@@ -13,7 +13,8 @@ class BrandController extends Controller
     public function index()
     {
         $order = request()->get('order', 'asc');
-        return Brand::orderBy('nombre', $order)->paginate(10);
+        $limit = request()->get('limit', 16);
+        return Brand::orderBy('nombre', $order)->paginate($limit);
     }
 
     /**
