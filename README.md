@@ -8,7 +8,7 @@
     En modo desarrollo, por defecto sería localhost:4200.
 
     SESSION_DOMAIN=localhost
-    Esta variable es igual de importante que SANCTUM_STATEFUL_DOMAINS.
+    Esta variable es igual de importante que la anterior.
     Define el dominio donde se almacenarán las cookies de sesión y, por lo tanto, determina si la comunicación será con localhost o, en su defecto, con 127.0.0.1:8000.
 
     SESSION_LIFETIME=5
