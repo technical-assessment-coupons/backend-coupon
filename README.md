@@ -2,8 +2,10 @@
 
 1. Configurar **.env** development , ademas de las variables de la DB:
 ```
-    SANCTUM_STATEFUL_DOMAINS=localhost:4200
-    SESSION_DOMAIN=localhost
+    SANCTUM_STATEFUL_DOMAINS=localhost       
+    Aqui establece el dominio o host al que front esta establecido incluyendo su puerto es esta caso como es localhost el build del fronted se deja , si fuera en modo desarrollo por defecto seria localhost:4200
+
+    SESSION_DOMAIN=localhost         
     SESSION_LIFETIME=5
 
     DB_CONNECTION=mysql
