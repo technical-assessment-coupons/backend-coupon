@@ -1,6 +1,21 @@
 ### START PROJECT
+1.-Al tener el proyecto debera renombrar el archivo **.env.templete** a **.env**
+despues ejecutar  
+```bash
+composer intall
+```
+aunque se pueda inicalizar el servidor o hacer los siuientes pasos aparecera este error **"No application encryption key has been specified."**
+se soluciona ejectando el siguiente comando
 
-1. Configurar **.env** development , ademas de las variables de la DB:
+```bash
+php artisan key:generate
+```
+
+con esto al volver a revisar aparecera este mensaje o error **"Connection refused (Connection: mysql, SQL: select * from `sessions` where `id` = 2GtSarTJLATZhf67ov5gauBOjcGSAxIr1BKVuKEi limit 1)"**
+
+Para solucionar este paso es neceario configurar la base de datos y sus repectivas variables
+
+2. Configurar **.env** development , ademas de las variables de la DB:
 ```
     SANCTUM_STATEFUL_DOMAINS=localhost       
     Aquí se debe establecer el dominio o host donde está desplegado el frontend, incluyendo el puerto.
@@ -14,15 +29,15 @@
     SESSION_LIFETIME=5
 
     DB_CONNECTION=mysql
-    DB_HOST=
-    DB_PORT=
-    DB_DATABASE=
-    DB_USERNAME=
-    DB_PASSWORD=
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=exmpledb
+    DB_USERNAME=root
+    DB_PASSWORD=Passwordstrong809
 ```
-2. ```bash docker compose up --build``` (opcional)
-3. ```bash php artisan migrate:fresh --seed```
-4. ```bash php artisan serv```
+3. ```docker compose up --build -d``` (opcional)
+4. ```php artisan migrate:fresh --seed```
+5. ```php artisan serv```
 
 #### Despues de crear el Proyecto 
 Use una imagen de MariaDB porque es un sistema de gestión de bases de datos relacionales (SGBDR) de código abierto, creado por los desarrolladores originales de MySQL, que ofrece una alternativa gratuita y robusta para almacenar, organizar y acceder a datos.
