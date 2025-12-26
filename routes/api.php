@@ -14,7 +14,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'meUser']);
-
+    Route::post('/log-out', [AuthController::class, 'logOut']);
     Route::apiResource('categories', CategoryController::class)->only([
         'index', 'show'
     ]);
